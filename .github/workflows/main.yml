@@ -1,0 +1,20 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+  schedule:
+    - cron: 0 12 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: Fuzion24/JustTrustMe
+      - name: Build
+        run: |
+          ./gradlew assembleRelease
